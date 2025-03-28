@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "NZICHyOjdEA=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Mishalia Pillay\\Desktop\\PracticeWebApi\\WebApi\\Domain\\Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Mishalia Pillay\\.nuget\\packages\\microsoft.net.sdk.compilers.toolset\\9.0.202\\microsoft.net.sdk.compilers.toolset.9.0.202.nupkg.sha512",
+    "C:\\Users\\Mishalia Pillay\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.14\\microsoft.windowsdesktop.app.ref.8.0.14.nupkg.sha512",
+    "C:\\Users\\Mishalia Pillay\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.14\\microsoft.netcore.app.ref.8.0.14.nupkg.sha512",
+    "C:\\Users\\Mishalia Pillay\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.14\\microsoft.aspnetcore.app.ref.8.0.14.nupkg.sha512"
+  ],
+  "logs": []
+}
