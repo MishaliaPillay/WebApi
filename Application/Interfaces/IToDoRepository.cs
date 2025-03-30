@@ -10,5 +10,7 @@ namespace Application.Interfaces
     public interface IToDoRepository
     {
         Task<List<ToDo>> GetAllAsync();
+        Task<ToDo> UpdateAsync(ToDo toDo, int id);
+        Task<ToDo> AddAsync(ToDo toDo);
     }
 }

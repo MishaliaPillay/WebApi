@@ -25,6 +25,30 @@ namespace Application.Services
             var todos = await _context.ToDos.ToListAsync();
             return todos;
         }
+        public async Task<ToDo> UpdateAsync(ToDo updatedToDo, int id)
+        {
+            var existingToDo = await _context.ToDos.FindAsync(id);
+            if (existingToDo == null)
+            {
+                return null;
+            }
+
+            existingToDo.Name = updatedToDo.Name;
+            existingToDo.PriorityLevel = updatedToDo.PriorityLevel;
+            existingToDo.DateDue = updatedToDo.DateDue;
+            existingToDo.DateCreated = updatedToDo.DateCreated;
+            existingToDo.IsCompleted = updatedToDo.IsCompleted;
+
+            await _context.SaveChangesAsync();
+            return existingToDo;
+
+        }
+        public async Task<ToDo> AddAsync(ToDo toDo)
+        {
+            await _context.ToDos.AddAsync(toDo.Id);
+
+
+        }
     }
 
 

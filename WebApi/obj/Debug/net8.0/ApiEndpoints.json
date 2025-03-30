@@ -59,7 +59,7 @@
   },
   {
     "ContainingType": "WebApi.Controllers.ToDoController",
-    "Method": "Put",
+    "Method": "UpdateToDoAsync",
     "RelativePath": "api/ToDo/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
@@ -71,18 +71,12 @@
         "IsRequired": true
       },
       {
-        "Name": "value",
-        "Type": "System.String",
+        "Name": "updatedToDo",
+        "Type": "Domain.Models.Entities.ToDo",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "WebApi.Controllers.ToDoController",
