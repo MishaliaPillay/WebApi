@@ -11,8 +11,8 @@ namespace Application.Interfaces
     public interface IToDoRepository
     {
         Task<IEnumerable<ToDoResponseDto>> GetAllAsync();
-        Task<ToDoUpdateDto> UpdateAsync(ToDoUpdateDto updateToDoDto, int id);
-        Task<ToDoCreateDto> AddAsync(ToDoCreateDto createToDoDto);
+        Task<ToDoResponseDto> UpdateAsync(ToDoUpdateDto updateToDoDto, int id);
+        Task<ToDoResponseDto> AddAsync(ToDoCreateDto createToDoDto);
         //true is 204 - no content , successfully deleted
         //false is 404 - item wasn't found 
         Task<bool> DeleteAsync(int id);

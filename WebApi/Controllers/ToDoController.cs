@@ -1,4 +1,5 @@
-﻿using Application.Interfaces;
+﻿using Application.DTOs;
+using Application.Interfaces;
 using Domain.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,16 +25,10 @@ namespace WebApi.Controllers
             return Ok(todos);
         }
 
-        // GET api/<ToDoController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
 
         // POST api/<ToDoController>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] ToDo newToDo)
+        public async Task<IActionResult> Post([FromBody] ToDoCreateDto newToDo)
         {
             if (newToDo == null)
             {
@@ -46,7 +41,7 @@ namespace WebApi.Controllers
 
         // PUT api/<ToDoController>/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateToDoAsync(int id, [FromBody] ToDo updatedToDo)
+        public async Task<IActionResult> UpdateToDoAsync(int id, [FromBody] ToDoUpdateDto updatedToDo)
         {
             if (updatedToDo == null)
             {
