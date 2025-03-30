@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Application.DTOs;
 using Application.Interfaces;
+using AutoMapper;
 using Domain.Models.Entities;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -14,18 +16,22 @@ namespace Application.Services
     {
         private readonly ApplicationDbContext _context;
 
+        private readonly IMapper _mapper;
         // Constructor Where we do dependency injection
-        public ToDoService(ApplicationDbContext context)
+        public ToDoService(ApplicationDbContext context, IMapper mapper)
         {
+
             _context = context ?? throw new ArgumentNullException(nameof(context));
+
+            _mapper = mapper;
         }
 
-        public async Task<List<ToDo>> GetAllAsync()
+        public async Task<IEnumerable<ToDoResponseDto>> GetAllAsync()
         {
             var todos = await _context.ToDos.ToListAsync();
-            return todos;
+            return _mapper.Map<IEnumerable<ToDoResponseDto>>(todos);
         }
-        public async Task<ToDo> UpdateAsync(ToDo updatedToDo, int id)
+        public async Task<IEnumerable<ToDoUpdateDto>> UpdateAsync(ToDo updatedToDo, int id)
         {
             var existingToDo = await _context.ToDos.FindAsync(id);
             if (existingToDo == null)
@@ -43,7 +49,7 @@ namespace Application.Services
             return existingToDo;
 
         }
-        public async Task<ToDo> AddAsync(ToDo toDo)
+        public async Task<IEnumerable<ToDoCreateDto>> AddAsync(ToDo toDo)
         {
 
 
