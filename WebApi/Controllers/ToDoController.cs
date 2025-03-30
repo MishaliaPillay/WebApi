@@ -1,4 +1,5 @@
 ﻿using Application.Interfaces;
+using Domain.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -38,8 +39,22 @@ namespace WebApi.Controllers
 
         // PUT api/<ToDoController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> UpdateToDoAsync(int id, [FromBody] ToDo updatedToDo)
         {
+            if (updatedToDo == null)
+            {
+                return BadRequest("Invalid To Do data.");
+            }
+
+
+            var updated = await _toDoRepository.UpdateAsync(updatedToDo, id);
+
+            if (updated == null)
+            {
+                return NotFound($"ToDo with id ({id}) not found.");
+            }
+
+            return Ok(updated);
         }
 
         // DELETE api/<ToDoController>/5
