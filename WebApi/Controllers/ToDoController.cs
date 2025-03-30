@@ -33,8 +33,15 @@ namespace WebApi.Controllers
 
         // POST api/<ToDoController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] ToDo newToDo)
         {
+            if (newToDo == null)
+            {
+                return BadRequest(" To Do cannot be null.");
+
+            }
+            var createdToDo = await _toDoRepository.AddAsync(newToDo);
+            return Ok(createdToDo);
         }
 
         // PUT api/<ToDoController>/5
@@ -59,8 +66,15 @@ namespace WebApi.Controllers
 
         // DELETE api/<ToDoController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
+            var isDeleted = await _toDoRepository.DeleteAsync(id);
+
+            if (!isDeleted)
+            {
+                return NotFound();
+            }
+            return NoContent();
         }
     }
 }

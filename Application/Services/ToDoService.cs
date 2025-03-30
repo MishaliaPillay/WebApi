@@ -45,9 +45,28 @@ namespace Application.Services
         }
         public async Task<ToDo> AddAsync(ToDo toDo)
         {
-            await _context.ToDos.AddAsync(toDo.Id);
 
 
+            if (toDo == null)
+            {
+                throw new ArgumentNullException(nameof(toDo));
+            }
+            await _context.ToDos.AddAsync(toDo);
+            await _context.SaveChangesAsync();
+            return toDo;
+
+
+        }
+        public async Task<bool> DeleteAsync(int id)
+        {
+            var toDo = await _context.ToDos.Where(t => t.Id == id).FirstOrDefaultAsync();
+            if (toDo == null)
+            {
+                return false;
+            }
+            _context.ToDos.Remove(toDo);
+            await _context.SaveChangesAsync();
+            return true;
         }
     }
 
