@@ -31,7 +31,7 @@ namespace Application.Services
             var todos = await _context.ToDos.ToListAsync();
             return _mapper.Map<IEnumerable<ToDoResponseDto>>(todos);
         }
-        public async Task<IEnumerable<ToDoUpdateDto>> UpdateAsync(ToDo updatedToDo, int id)
+        public async Task<ToDoResponseDto> UpdateAsync(ToDoUpdateDto updateToDoDto, int id)
         {
             var existingToDo = await _context.ToDos.FindAsync(id);
             if (existingToDo == null)
@@ -39,27 +39,28 @@ namespace Application.Services
                 return null;
             }
 
-            existingToDo.Name = updatedToDo.Name;
-            existingToDo.PriorityLevel = updatedToDo.PriorityLevel;
-            existingToDo.DateDue = updatedToDo.DateDue;
-            existingToDo.DateCreated = updatedToDo.DateCreated;
-            existingToDo.IsCompleted = updatedToDo.IsCompleted;
 
+
+            _mapper.Map(updateToDoDto, existingToDo);
             await _context.SaveChangesAsync();
-            return existingToDo;
+            return _mapper.Map<ToDoResponseDto>(existingToDo);
 
         }
-        public async Task<IEnumerable<ToDoCreateDto>> AddAsync(ToDo toDo)
+        public async Task<ToDoResponseDto> AddAsync(ToDoCreateDto createToDoDto)
         {
 
 
-            if (toDo == null)
+            if (createToDoDto == null)
             {
-                throw new ArgumentNullException(nameof(toDo));
+                throw new ArgumentNullException(nameof(createToDoDto));
             }
+
+            var toDo = _mapper.Map<ToDo>(createToDoDto);
+
+
             await _context.ToDos.AddAsync(toDo);
             await _context.SaveChangesAsync();
-            return toDo;
+            return _mapper.Map<ToDoResponseDto>(toDo);
 
 
         }
@@ -78,3 +79,8 @@ namespace Application.Services
 
 
 }
+
+
+/*'ToDoService' does not implement interface member 'IToDoRepository.UpdateAsync(ToDoUpdateDto, int)'. 'ToDoService.UpdateAsync(ToDoUpdateDto, int)' cannot implement 'IToDoRepository.UpdateAsync(ToDoUpdateDto, int)' because it does not have the matching return type of 'Task<ToDoUpdateDto>'.
+ 'ToDoService' does not implement interface member 'IToDoRepository.AddAsync(ToDoCreateDto)'. 'ToDoService.AddAsync(ToDoCreateDto)' cannot implement 'IToDoRepository.AddAsync(ToDoCreateDto)' because it does not have the matching return type of 'Task<ToDoCreateDto>'.*/
+
