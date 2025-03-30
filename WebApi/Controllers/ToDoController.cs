@@ -1,4 +1,5 @@
-﻿using Application.Interfaces;
+﻿using Application.DTOs;
+using Application.Interfaces;
 using Domain.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,22 +25,23 @@ namespace WebApi.Controllers
             return Ok(todos);
         }
 
-        // GET api/<ToDoController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
 
         // POST api/<ToDoController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] ToDoCreateDto newToDo)
         {
+            if (newToDo == null)
+            {
+                return BadRequest(" To Do cannot be null.");
+
+            }
+            var createdToDo = await _toDoRepository.AddAsync(newToDo);
+            return Ok(createdToDo);
         }
 
         // PUT api/<ToDoController>/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateToDoAsync(int id, [FromBody] ToDo updatedToDo)
+        public async Task<IActionResult> UpdateToDoAsync(int id, [FromBody] ToDoUpdateDto updatedToDo)
         {
             if (updatedToDo == null)
             {
@@ -59,8 +61,15 @@ namespace WebApi.Controllers
 
         // DELETE api/<ToDoController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
+            var isDeleted = await _toDoRepository.DeleteAsync(id);
+
+            if (!isDeleted)
+            {
+                return NotFound();
+            }
+            return NoContent();
         }
     }
 }

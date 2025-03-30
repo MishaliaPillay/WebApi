@@ -62,17 +62,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "string"
+                "$ref": "#/components/schemas/ToDoCreateDto"
               }
             },
             "text/json": {
               "schema": {
-                "type": "string"
+                "$ref": "#/components/schemas/ToDoCreateDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "type": "string"
+                "$ref": "#/components/schemas/ToDoCreateDto"
               }
             }
           }
@@ -142,17 +142,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ToDo"
+                "$ref": "#/components/schemas/ToDoUpdateDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/ToDo"
+                "$ref": "#/components/schemas/ToDoUpdateDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/ToDo"
+                "$ref": "#/components/schemas/ToDoUpdateDto"
               }
             }
           }
@@ -213,6 +213,53 @@
           "dateCreated": {
             "type": "string",
             "format": "date"
+          },
+          "dateDue": {
+            "type": "string",
+            "format": "date"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ToDoCreateDto": {
+        "required": [
+          "name",
+          "priorityLevel"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "priorityLevel": {
+            "type": "string",
+            "nullable": true
+          },
+          "dateDue": {
+            "type": "string",
+            "format": "date"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ToDoUpdateDto": {
+        "required": [
+          "name",
+          "priorityLevel"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "isCompleted": {
+            "type": "boolean"
+          },
+          "priorityLevel": {
+            "type": "string",
+            "nullable": true
           },
           "dateDue": {
             "type": "string",

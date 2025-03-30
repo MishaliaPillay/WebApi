@@ -18,18 +18,12 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "value",
-        "Type": "System.String",
+        "Name": "newToDo",
+        "Type": "Application.DTOs.ToDoCreateDto",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "WebApi.Controllers.ToDoController",
@@ -72,7 +66,7 @@
       },
       {
         "Name": "updatedToDo",
-        "Type": "Domain.Models.Entities.ToDo",
+        "Type": "Application.DTOs.ToDoUpdateDto",
         "IsRequired": true
       }
     ],
@@ -92,13 +86,7 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "WebApi.Controllers.TaskController",

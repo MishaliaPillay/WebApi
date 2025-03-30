@@ -183,3 +183,4 @@ C:\Users\Mishalia Pillay\Desktop\PracticeWebApi\WebApi\WebApi\bin\Debug\net8.0\M
 C:\Users\Mishalia Pillay\Desktop\PracticeWebApi\WebApi\WebApi\bin\Debug\net8.0\Application.dll
 C:\Users\Mishalia Pillay\Desktop\PracticeWebApi\WebApi\WebApi\bin\Debug\net8.0\Application.pdb
 C:\Users\Mishalia Pillay\Desktop\PracticeWebApi\WebApi\WebApi\obj\Debug\net8.0\WebApi.sourcelink.json
+C:\Users\Mishalia Pillay\Desktop\PracticeWebApi\WebApi\WebApi\bin\Debug\net8.0\AutoMapper.dll

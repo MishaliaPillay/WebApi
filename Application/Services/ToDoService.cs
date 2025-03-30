@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Application.DTOs;
 using Application.Interfaces;
+using AutoMapper;
 using Domain.Models.Entities;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -14,18 +16,22 @@ namespace Application.Services
     {
         private readonly ApplicationDbContext _context;
 
+        private readonly IMapper _mapper;
         // Constructor Where we do dependency injection
-        public ToDoService(ApplicationDbContext context)
+        public ToDoService(ApplicationDbContext context, IMapper mapper)
         {
+
             _context = context ?? throw new ArgumentNullException(nameof(context));
+
+            _mapper = mapper;
         }
 
-        public async Task<List<ToDo>> GetAllAsync()
+        public async Task<IEnumerable<ToDoResponseDto>> GetAllAsync()
         {
             var todos = await _context.ToDos.ToListAsync();
-            return todos;
+            return _mapper.Map<IEnumerable<ToDoResponseDto>>(todos);
         }
-        public async Task<ToDo> UpdateAsync(ToDo updatedToDo, int id)
+        public async Task<ToDoResponseDto> UpdateAsync(ToDoUpdateDto updateToDoDto, int id)
         {
             var existingToDo = await _context.ToDos.FindAsync(id);
             if (existingToDo == null)
@@ -33,23 +39,48 @@ namespace Application.Services
                 return null;
             }
 
-            existingToDo.Name = updatedToDo.Name;
-            existingToDo.PriorityLevel = updatedToDo.PriorityLevel;
-            existingToDo.DateDue = updatedToDo.DateDue;
-            existingToDo.DateCreated = updatedToDo.DateCreated;
-            existingToDo.IsCompleted = updatedToDo.IsCompleted;
 
+
+            _mapper.Map(updateToDoDto, existingToDo);
             await _context.SaveChangesAsync();
-            return existingToDo;
+            return _mapper.Map<ToDoResponseDto>(existingToDo);
 
         }
-        public async Task<ToDo> AddAsync(ToDo toDo)
+        public async Task<ToDoResponseDto> AddAsync(ToDoCreateDto createToDoDto)
         {
-            await _context.ToDos.AddAsync(toDo.Id);
 
 
+            if (createToDoDto == null)
+            {
+                throw new ArgumentNullException(nameof(createToDoDto));
+            }
+
+            var toDo = _mapper.Map<ToDo>(createToDoDto);
+
+
+            await _context.ToDos.AddAsync(toDo);
+            await _context.SaveChangesAsync();
+            return _mapper.Map<ToDoResponseDto>(toDo);
+
+
+        }
+        public async Task<bool> DeleteAsync(int id)
+        {
+            var toDo = await _context.ToDos.Where(t => t.Id == id).FirstOrDefaultAsync();
+            if (toDo == null)
+            {
+                return false;
+            }
+            _context.ToDos.Remove(toDo);
+            await _context.SaveChangesAsync();
+            return true;
         }
     }
 
 
 }
+
+
+/*'ToDoService' does not implement interface member 'IToDoRepository.UpdateAsync(ToDoUpdateDto, int)'. 'ToDoService.UpdateAsync(ToDoUpdateDto, int)' cannot implement 'IToDoRepository.UpdateAsync(ToDoUpdateDto, int)' because it does not have the matching return type of 'Task<ToDoUpdateDto>'.
+ 'ToDoService' does not implement interface member 'IToDoRepository.AddAsync(ToDoCreateDto)'. 'ToDoService.AddAsync(ToDoCreateDto)' cannot implement 'IToDoRepository.AddAsync(ToDoCreateDto)' because it does not have the matching return type of 'Task<ToDoCreateDto>'.*/
+
