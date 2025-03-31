@@ -15,3 +15,4 @@ C:\Users\Mishalia Pillay\Desktop\PracticeWebApi\WebApi\Infrastructure\obj\Debug\
 C:\Users\Mishalia Pillay\Desktop\PracticeWebApi\WebApi\Infrastructure\obj\Debug\net8.0\Infrastructure.pdb
 C:\Users\Mishalia Pillay\Desktop\PracticeWebApi\WebApi\Infrastructure\obj\Debug\net8.0\Infrastructure.genruntimeconfig.cache
 C:\Users\Mishalia Pillay\Desktop\PracticeWebApi\WebApi\Infrastructure\obj\Debug\net8.0\ref\Infrastructure.dll
+C:\Users\Mishalia Pillay\Desktop\PracticeWebApi\WebApi\Infrastructure\obj\Debug\net8.0\Infrastructure.sourcelink.json

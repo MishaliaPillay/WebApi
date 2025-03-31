@@ -184,3 +184,4 @@ C:\Users\Mishalia Pillay\Desktop\PracticeWebApi\WebApi\WebApi\bin\Debug\net8.0\A
 C:\Users\Mishalia Pillay\Desktop\PracticeWebApi\WebApi\WebApi\bin\Debug\net8.0\Application.pdb
 C:\Users\Mishalia Pillay\Desktop\PracticeWebApi\WebApi\WebApi\obj\Debug\net8.0\WebApi.sourcelink.json
 C:\Users\Mishalia Pillay\Desktop\PracticeWebApi\WebApi\WebApi\bin\Debug\net8.0\AutoMapper.dll
+C:\Users\Mishalia Pillay\Desktop\PracticeWebApi\WebApi\WebApi\bin\Debug\net8.0\BCrypt.Net-Next.dll

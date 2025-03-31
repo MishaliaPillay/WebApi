@@ -56,7 +56,7 @@ namespace Application.Services
             }
 
             var toDo = _mapper.Map<ToDo>(createToDoDto);
-
+            toDo.DateCreated = DateOnly.FromDateTime(DateTime.UtcNow);
 
             await _context.ToDos.AddAsync(toDo);
             await _context.SaveChangesAsync();
@@ -80,7 +80,4 @@ namespace Application.Services
 
 }
 
-
-/*'ToDoService' does not implement interface member 'IToDoRepository.UpdateAsync(ToDoUpdateDto, int)'. 'ToDoService.UpdateAsync(ToDoUpdateDto, int)' cannot implement 'IToDoRepository.UpdateAsync(ToDoUpdateDto, int)' because it does not have the matching return type of 'Task<ToDoUpdateDto>'.
- 'ToDoService' does not implement interface member 'IToDoRepository.AddAsync(ToDoCreateDto)'. 'ToDoService.AddAsync(ToDoCreateDto)' cannot implement 'IToDoRepository.AddAsync(ToDoCreateDto)' because it does not have the matching return type of 'Task<ToDoCreateDto>'.*/
 
