@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "NZICHyOjdEA=",
+  "dgSpecHash": "xYjVek8CLqY=",
   "success": true,
   "projectFilePath": "C:\\Users\\Mishalia Pillay\\Desktop\\PracticeWebApi\\WebApi\\Domain\\Domain.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Mishalia Pillay\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Mishalia Pillay\\.nuget\\packages\\microsoft.net.sdk.compilers.toolset\\9.0.202\\microsoft.net.sdk.compilers.toolset.9.0.202.nupkg.sha512",
     "C:\\Users\\Mishalia Pillay\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.14\\microsoft.windowsdesktop.app.ref.8.0.14.nupkg.sha512",
     "C:\\Users\\Mishalia Pillay\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.14\\microsoft.netcore.app.ref.8.0.14.nupkg.sha512",
