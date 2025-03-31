@@ -1,6 +1,7 @@
 ﻿using Application.DTOs;
 using Application.Interfaces;
 using Domain.Models.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -13,20 +14,28 @@ namespace WebApi.Controllers
     {
 
         private readonly IToDoRepository _toDoRepository;
-        public ToDoController(IToDoRepository toDoRepository)
+        private readonly ILogger<ToDoController> _logger;
+        public ToDoController(IToDoRepository toDoRepository, ILogger<ToDoController> logger)
         {
             _toDoRepository = toDoRepository;
+            _logger = logger;
         }
         // GET: api/<ToDoController>
         [HttpGet]
         public async Task<IActionResult> Get()
         {
+            _logger.LogInformation("Get called");
             var todos = await _toDoRepository.GetAllAsync();
             return Ok(todos);
         }
+        [Authorize]
+        [HttpGet("Demo")]
+        public IActionResult Demo()
+        {
+            return Ok("User Authenticated Successfully!");
+        }
 
-
-        // POST api/<ToDoController>
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] ToDoCreateDto newToDo)
         {
